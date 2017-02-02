@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RpBill" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8f31054-ef48-4039-b9e1-603c087d4cb2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="month_para" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="name_para" class="java.lang.String"/>
+	<parameter name="contractID_para" class="java.lang.Object"/>
+	<parameter name="date_para" class="java.util.Date"/>
+	<parameter name="total_para" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     tbPaymentDetails."contractID"
+FROM
+     "tbPaymentDetails" tbPaymentDetails
+WHERE
+     month = $P{month_para} AND contractID = $P{contractID_para}]]>
+	</queryString>
+	<field name="contractID" class="java.lang.Integer"/>
+	<field name="month" class="java.lang.Short"/>
+	<field name="principal" class="java.math.BigDecimal"/>
+	<field name="interest" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="remaining" class="java.math.BigDecimal"/>
+	<field name="bgDate" class="java.lang.String"/>
+	<field name="paymentDate" class="java.lang.String"/>
+	<field name="currentDate" class="java.lang.String"/>
+	<field name="paymentStatus" class="java.lang.String"/>
+	<field name="indentifyCard" class="java.lang.String"/>
+	<field name="fine" class="java.math.BigDecimal"/>
+	<group name="contractID">
+		<groupExpression><![CDATA[$F{contractID}]]></groupExpression>
+	</group>
+	<group name="month">
+		<groupExpression><![CDATA[$F{month}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="12" width="287" height="57" uuid="0d13b26f-8fc1-4957-89e3-b8e36923da0d"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Payment Receipt]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="186" y="0" width="184" height="35" uuid="e4f2434a-fbb9-4da2-8f05-3803b0b6182c"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quick Loan Company]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="147" y="10" width="223" height="20" uuid="ae654be2-0cb8-4da2-a45e-57a2ab0d4722"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address: 170N No Trang Long]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="36" width="100" height="20" uuid="17625237-4145-463f-935f-389aeff475b7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fax: 841234568]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="36" width="100" height="20" uuid="83c70074-36e9-442c-93c8-03d42dca7335"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone: 841234568]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="152" splitType="Stretch">
+			<staticText>
+				<reportElement x="33" y="11" width="100" height="20" uuid="bea6ef73-75d3-4a12-8cd5-9ff553a010c0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="147" y="11" width="208" height="20" uuid="d54eab24-19c6-4876-a793-958b17236dbf"/>
+				<textFieldExpression><![CDATA[$P{name_para}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="45" width="100" height="20" uuid="8201ad0e-9c3a-48a2-b6d3-aa6ce3704cd7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="45" width="100" height="20" uuid="d2a56f0f-82b1-4e34-a8a1-f8c91f24dda9"/>
+				<textFieldExpression><![CDATA[$P{date_para}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="75" width="100" height="20" uuid="08f6d513-1635-4a88-97a5-8d7f69de3620"/>
+				<textFieldExpression><![CDATA[$F{fine}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="33" y="75" width="100" height="20" uuid="26afe9d1-5d51-4b8d-a2f0-3e11a6b7a323"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fine:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="45" width="100" height="20" uuid="bf6cc68d-3aec-464d-a5df-e49d410909e6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="147" y="45" width="100" height="20" uuid="6041ba12-eb67-40de-8e6f-f41f871d49d0"/>
+				<textFieldExpression><![CDATA[$F{interest}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="147" y="110" width="100" height="1" uuid="0fd02e77-a310-45e2-a1ce-4d69b538a639"/>
+			</line>
+			<staticText>
+				<reportElement x="33" y="123" width="100" height="20" uuid="310bd351-970e-46a9-af67-dfe147803da7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="147" y="123" width="100" height="20" uuid="7e23af30-705c-465e-b29f-3f0cb0c8f946"/>
+				<textFieldExpression><![CDATA[$P{total_para}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="11" width="100" height="20" uuid="0bd05832-0572-441c-8981-cc9ddeba22a8"/>
+				<textFieldExpression><![CDATA[$F{contractID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="10" width="100" height="20" uuid="3ceb92ae-5868-47dc-8fe7-da9abec313dc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract ID:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="143" width="555" height="1" uuid="dd6843fb-f541-4001-9c08-2e932d928a6d"/>
+			</line>
+			<line>
+				<reportElement x="0" y="6" width="555" height="1" uuid="3d3698d0-8bd7-49d0-9c0b-5da8e3d00a33"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="36">
+			<staticText>
+				<reportElement x="163" y="0" width="234" height="34" uuid="85115baf-8fc8-48ba-a47c-f1ef864a40cd"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thank you . See you again .]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
